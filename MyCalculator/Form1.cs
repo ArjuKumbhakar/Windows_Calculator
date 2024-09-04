@@ -16,11 +16,11 @@ namespace MyCalculator
         {
             InitializeComponent();
         }
-        static double num1;
-        static double num2;
+        static Double num1;
+        static Double num2;
         string option;
-       static double result;
-        int flag = 0;
+        static Double result;
+        Double flag = 0;
         private void button1_Click(object sender, EventArgs e)
         {
             if (flag==1)
@@ -166,43 +166,55 @@ namespace MyCalculator
         private void btnPlus_Click(object sender, EventArgs e)
         {
             option = "+";
-            num1 = int.Parse(txtTotal.Text);
+            num1 = Double.Parse(txtTotal.Text);
             txtTotal.Clear();
         }
 
         private void btnMin_Click(object sender, EventArgs e)
         {
             option = "-";
-            num1 = int.Parse(txtTotal.Text);
+            num1 = Double.Parse(txtTotal.Text);
             txtTotal.Clear();
         }
 
         private void btnMul_Click(object sender, EventArgs e)
         {
             option = "*";
-            num1 = int.Parse(txtTotal.Text);
+            num1 = Double.Parse(txtTotal.Text);
             txtTotal.Clear();
         }
 
         private void btnDiv_Click(object sender, EventArgs e)
         {
             option = "/";
-            num1 = int.Parse(txtTotal.Text);
+            num1 = Double.Parse(txtTotal.Text);
             txtTotal.Clear();
         }
 
         private void btnEql_Click(object sender, EventArgs e)
         {
             result = 0;
-            num2 = double.Parse(txtTotal.Text);
+            num2 = Double.Parse(txtTotal.Text);
             if (option.Equals("+"))
-                result =result+ num1 + num2;
+                result =num1 + num2;
             if (option.Equals("-"))
                 result = num1 - num2;
             if (option.Equals("*"))
             result = num1 * num2;
             if (option.Equals("/"))
-                result = num1 / num2;
+            {
+                if (num2 != 0)
+                {
+                    result = num1 / num2;
+                }
+                else 
+                {
+                    txtTotal.Clear();
+                    MessageBox.Show("Division by 0 Error");
+                   
+                }
+            }
+
             txtTotal.Text = result + "";
             flag = 1;
             
